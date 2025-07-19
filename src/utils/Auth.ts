@@ -2,8 +2,9 @@ import { Request, Response, NextFunction } from "express";
 import Token from "./Token";
 
 class Auth {
-    public Free = (req: Request, res: Response, next: NextFunction) => {
-        const {authorization} = req.headers;
+    public Free = (req:Request, res:Response, next:NextFunction) => {
+
+        const { authorization } = req.headers;
 
         if (authorization) {
             const token = authorization.split(' ')[1];
@@ -24,6 +25,57 @@ class Auth {
         } 
 
         return next();
+    }
+
+    public safe = (req:Request, res:Response, next:NextFunction) => {
+
+        const {authorization} = req.body;
+
+        if (!authorization) {
+            res.status(401).json({error: 'Authorization necessaria'})
+        }
+
+        const token = authorization.split('')[1];
+
+        if (!token) {
+            return res.status(401).json({Error: 'Token necessario'})
+         }
+         try {
+             const decoded = token.verify(token);
+             req.body.userId = decoded.id;
+             return next();
+         }
+         catch (err) {
+            return res.status(401).json({error: 'Token invalido'});
+         }
+    }
+
+    public admin = (req:Request, res:Response, next:NextFunction) => {
+
+        const {authorization} = req.body;
+
+        if (!authorization) {
+            res.status(401).json({error: 'Authorization necessaria'})
+        }
+
+        const token = authorization.split(' ')[1];
+
+        if (!token) {
+            res.status(401).json({error: 'Token necessario'})
+        }
+
+        try {
+            const decoded = Token.verify(token);
+            req.body.userId = decoded.id;
+            if (decoded.role !== 'admin') {
+                return res.status(403).json({error: 'Acesso negado amigo.'})
+            }
+            return next();
+        }
+        catch (err) {
+            return res.status(401).json({error: 'Token invalido'})
+        }
+
     }
 }
 export default new Auth();
