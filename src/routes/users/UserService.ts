@@ -1,6 +1,6 @@
 import Password from "../../utils/Password";
 import Token from "../../utils/Token";
-import { IUserRegister } from "./UserInterface";
+import { IUserLogin, IUserRegister } from "./UserInterface";
 import UserRepository from "./UserRepository";
 
 
@@ -31,7 +31,7 @@ class UserService {
         })
     }
 
-    public login = async (email:string, password:string) => {
+    public Login = async (email:string, password:string) => {
 
         const user = await UserRepository.Email(email);
 
@@ -45,6 +45,34 @@ class UserService {
         }
 
         return Token.generate({userId: user.id, role: TEST_ROLE})
+    }
+
+    public Find = async (id: string) => {
+
+        const user = await UserRepository.Find(id);
+
+        if (!user) {
+            throw new Error('Usuario não encontrado')
+        }
+
+        return {
+            name: user.name,
+            email: user.email,
+        }
+    }
+    public Delete = async (id:string, data:IUserLogin) => {
+
+        const user = await UserRepository.Find(id)
+
+        if (!user) {
+            throw new Error('Usuario não encontrado')
+        }
+
+        if (!await Password.Compare(data.password, user.password)) {
+            throw new Error('Senha incorreta')
+        }
+
+        return await UserRepository.Delete(String(user.id))
     }
 }
 export default new UserService();

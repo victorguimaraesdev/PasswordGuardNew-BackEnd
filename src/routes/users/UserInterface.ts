@@ -11,3 +11,8 @@ export interface IUserRegister {
     email: string
     password: string
 }
+
+export interface IUserLogin {
+    name: string
+    password: string
+}
