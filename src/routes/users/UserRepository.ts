@@ -1,5 +1,8 @@
 import Database from "../../utils/Database"
 import { IUserEntity, IUserRegister } from "./UserInterface"
+// import { PrismaClient } from '@prisma/client'
+
+// const prisma = new PrismaClient();
 
 class UserRepository {
 
