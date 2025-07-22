@@ -31,15 +31,15 @@ class UserService {
         })
     }
 
-    public Login = async (email:string, password:string) => {
+    public Login = async (data: IUserLogin) => {
 
-        const user = await UserRepository.Email(email);
+        const user = await UserRepository.Email(data.email);
 
         if (!user) {
             throw new Error('Email de usuario não encontrado')
         }
 
-        const isPasswordValid = await Password.Compare(password, user.password)
+        const isPasswordValid = await Password.Compare(data.password, user.password)
         if(!isPasswordValid) {
             throw new Error('Senha inválida')
         }

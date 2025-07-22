@@ -13,6 +13,6 @@ export interface IUserRegister {
 }
 
 export interface IUserLogin {
-    name: string
+    email: string
     password: string
 }

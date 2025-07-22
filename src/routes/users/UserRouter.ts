@@ -7,7 +7,8 @@ class UserRouter {
 
     private Routes = () => {
         this.router.use(Auth.Free);
-        this.router.post('/reg', (req:Request, res:Response) => { UserController.Create(req, res)} )
+        this.router.post('/reg', (req:Request, res:Response) => { UserController.Create(req, res)})
+        this.router.post('/log', (req:Request, res:Response) => { UserController.Login(req, res)})
     }
 
     public Router = () => {
