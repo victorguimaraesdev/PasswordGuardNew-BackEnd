@@ -1,6 +1,7 @@
 import  express  from "express";
 import cors from 'cors';
 import UserRouter from "./routes/users/UserRouter";
+import RegisterRouter from "./routes/registers/RegisterRouter";
 
 class App {
 
@@ -29,6 +30,7 @@ class App {
     private Routes = () => {
         this.express.get('/', (_, res)=> {res.status(200).json({message: 'Hello World'})})
         this.express.use('/users', UserRouter);
+        this.express.use('/registers', RegisterRouter)
     }
 
     public Start = (porta: number) => {

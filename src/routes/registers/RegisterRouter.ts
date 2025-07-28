@@ -6,7 +6,7 @@ class RegisterRouter {
     private router = Router();
 
     private Routes = () => {
-        this.router.use(Auth.Free);
+        this.router.use(Auth.Safe);
         this.router.post('/new', (req:Request, res:Response) => {RegisterController.Create(req, res)})
     }
 
