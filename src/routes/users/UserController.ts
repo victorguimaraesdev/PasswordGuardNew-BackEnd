@@ -1,6 +1,5 @@
 import { Response, Request } from "express";
 import UserService from "./UserService";
-import Token from "../../utils/Token";
 
 class UserController {
     public Create = async (req:Request, res:Response) : Promise<Response> => {
@@ -29,8 +28,8 @@ class UserController {
                 throw new Error('Email e Password são necessarios')
             }
 
-            const Token = await UserService.Login({email, password})
-            return res.status(200).json({ Token }) 
+            const token = await UserService.Login({email, password})
+            return res.status(200).json({ token }) 
 
         }
         catch (err: any) {
