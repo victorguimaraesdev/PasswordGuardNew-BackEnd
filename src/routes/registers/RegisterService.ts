@@ -4,9 +4,10 @@ import RegisterRepository from "./RegisterRepository";
 class RegisterService {
     public Create = async (data: IRegisterReg) => {
         return await RegisterRepository.Create({
-            name: data.name,
+            dominio: data.dominio,
             email: data.email,
-            password: data.password
+            password: data.password,
+            url: data.url
         })
     }
 }

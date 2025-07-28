@@ -46,7 +46,8 @@ model Permission {
 
 model Register {
   id Int @id @default(autoincrement())
-  name String
+  dominio String
+  iconUrl String?
   email String 
   password String
 

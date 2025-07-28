@@ -4,14 +4,14 @@ import RegisterService from "./RegisterService";
 class RegisterController {
    public Create = async (req:Request, res:Response) => {
 
-    const {name, email, password} = req.body
+    const {dominio, email, password, url} = req.body
 
     try {
-        if(!name || !email || !password) {
-            throw new Error('Todos os campos são necessarios.')
+        if(!dominio || !email || !password) {
+            throw new Error('Instituição, email e senha são obrigatórios')
         }
-        
-        await RegisterService.Create({name, email, password})
+
+        await RegisterService.Create({dominio, email, password, url})
         return res.status(201).json({message: 'Registro realizado com sucesso!'})
     }
     catch (err : any) {

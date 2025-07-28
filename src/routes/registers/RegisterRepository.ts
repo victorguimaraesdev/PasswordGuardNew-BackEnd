@@ -6,9 +6,10 @@ class RegisterRepository {
         try {
             return Database.register.create({
                 data: {
-                    name: data.name,
+                    dominio: data.dominio,
                     email: data.email,
-                    password: data.password
+                    password: data.password,
+                    iconUrl: data.url
                 }
             })
         }

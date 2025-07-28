@@ -1,5 +1,6 @@
 export interface IRegisterReg {
-    name: string;
+    dominio: string;
     email: string;
     password: string;
+    url: string
 }
