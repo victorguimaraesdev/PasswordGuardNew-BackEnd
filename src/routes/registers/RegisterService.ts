@@ -12,8 +12,8 @@ class RegisterService {
         })
     }
 
-    public GetAll = async () => {
-        return await RegisterRepository.GetAll();
+    public GetAll = async (id: string) => {
+        return await RegisterRepository.GetAll(id);
     }
 }
 

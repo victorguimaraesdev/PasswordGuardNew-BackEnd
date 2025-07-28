@@ -18,9 +18,14 @@ class RegisterRepository {
             throw new Error('Erro ao registrar o registro no banco de dados')
         }
     }
-    public GetAll = async () => {
+    public GetAll = async (id: string) => {
         try {
-            return Database.register.findMany({});
+            return Database.register.findMany({
+                where: {
+                    userId: id, 
+                    deletedAt: null
+                }
+            });
         }
         catch (err) {
             throw new Error('Erro ao buscar os registros no banco de dados')

@@ -8,7 +8,7 @@ class RegisterRouter {
     private Routes = () => {
         this.router.use(Auth.Safe);
         this.router.post('/new/:id', (req:Request, res:Response) => {RegisterController.Create(req, res)})
-        this.router.get('/all', (req:Request, res:Response) => {RegisterController.GetAll(req, res)})
+        this.router.get('/all/:id', (req:Request, res:Response) => {RegisterController.GetAll(req, res)})
     }
 
     public Router = () => {
