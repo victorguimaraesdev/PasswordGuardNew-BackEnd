@@ -9,12 +9,21 @@ class RegisterRepository {
                     dominio: data.dominio,
                     email: data.email,
                     password: data.password,
-                    iconUrl: data.url
+                    iconUrl: data.url,
+                    userId: data.userId
                 }
             })
         }
         catch (err) {
             throw new Error('Erro ao registrar o registro no banco de dados')
+        }
+    }
+    public GetAll = async () => {
+        try {
+            return Database.register.findMany({});
+        }
+        catch (err) {
+            throw new Error('Erro ao buscar os registros no banco de dados')
         }
     }
 }

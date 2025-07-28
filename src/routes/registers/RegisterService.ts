@@ -7,8 +7,13 @@ class RegisterService {
             dominio: data.dominio,
             email: data.email,
             password: data.password,
-            url: data.url
+            url: data.url,
+            userId: data.userId
         })
+    }
+
+    public GetAll = async () => {
+        return await RegisterRepository.GetAll();
     }
 }
 
