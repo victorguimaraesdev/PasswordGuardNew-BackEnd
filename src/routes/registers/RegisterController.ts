@@ -19,12 +19,13 @@ class RegisterController {
    }
 
    public GetAll = async (req:Request, res:Response) => {
-    const {id} = req.params
+    
+    const {userId} = req.body
 
-    if (!id) return res.status(400).json({message: 'Id do usuario ausente.'})
+    if (!userId) return res.status(400).json({message: 'Id do usuario ausente.'})
 
     try {
-        const registers = await RegisterService.GetAll(id)
+        const registers = await RegisterService.GetAll(userId)
         return res.status(200).json(registers)
     }
     catch (err : any) {

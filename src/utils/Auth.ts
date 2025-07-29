@@ -43,6 +43,7 @@ class Auth {
 
         try {
             const decoded = Token.verify(token);
+            if (!req.body) req.body = {};
             req.body.userId = decoded.id;
             return next();
         }
