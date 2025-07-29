@@ -18,7 +18,7 @@ class Auth {
             try {
                 const decoded = Token.verify(token)
                 if (!req.body) req.body = {};
-                req.body.userId = decoded?.userId
+                req.body.userId = decoded?.id
                 return next();
             }
             catch (err) {
@@ -43,7 +43,7 @@ class Auth {
 
         try {
             const decoded = Token.verify(token);
-            req.body.userId = decoded?.userId;
+            req.body.userId = decoded.id;
             return next();
         }
         catch (err) {
@@ -52,7 +52,7 @@ class Auth {
 
     }
 
-    public Admin = (req:Request, res:Response, next:NextFunction) => {
+    public Admin =  (req:Request, res:Response, next:NextFunction) => {
         
         const {authorization} = req.headers;
 
@@ -68,7 +68,7 @@ class Auth {
 
         try {
             const decoded = Token.verify(token);
-            req.body.userId = decoded?.userId;
+            req.body.userId = decoded?.id;
             if(decoded?.role != 'admin'){
                 return res.status(403).json({error: 'Acesso negado'})
             }

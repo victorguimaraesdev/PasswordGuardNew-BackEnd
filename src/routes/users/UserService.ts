@@ -44,7 +44,7 @@ class UserService {
             throw new Error('Senha inválida')
         }
 
-        return Token.generate({userId: user.id, role: TEST_ROLE})
+        return Token.generate({id: user.id, role: TEST_ROLE})
     }
 
     public Find = async (id: string) => {
