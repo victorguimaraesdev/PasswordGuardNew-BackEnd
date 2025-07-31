@@ -22,7 +22,7 @@ class RegisterRepository {
        try {
         return Database.register.findFirst({
             where: {
-                id,
+                id: id,
                 deletedAt: null
             }
         })
@@ -33,7 +33,7 @@ class RegisterRepository {
     
     public Delete = async (id: number) => {
     return Database.register.update({
-        where: { id },
+        where: { id: id },
         data: { deletedAt: new Date() }
     });
 }

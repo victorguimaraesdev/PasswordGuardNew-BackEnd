@@ -1,4 +1,4 @@
-import { IRegisterReg } from "./RegisterInterface";
+import { IRegisterReg} from "./RegisterInterface";
 import RegisterRepository from "./RegisterRepository";
 
 class RegisterService {
@@ -16,15 +16,18 @@ class RegisterService {
     public GetAll = async (id : string) => {
         return await RegisterRepository.GetAll(id);
     }
-    public Delete = async (id: number) => {
 
-    const register = await RegisterRepository.Find(id);
+    public Delete = async (registerId:number) => {
+
+    const register = await RegisterRepository.Find(registerId);
+
+        console.log(registerId)
 
     if (!register) {
         throw new Error("O registro não foi encontrado");
     }
 
-    await RegisterRepository.Delete(id);
+    await RegisterRepository.Delete(registerId);
     }
 }
 

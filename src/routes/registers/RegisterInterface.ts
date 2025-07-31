@@ -5,3 +5,7 @@ export interface IRegisterReg {
     password: string;
     url: string
 }
+// export interface IDeleteRegister {
+//     userId: string;
+//     registerId: number;
+// }

@@ -34,14 +34,16 @@ class RegisterController {
 
    }
    public Delete = async (req:Request , res:Response) => {
+    
+    const {id} = req.params
+    const {userId} = req.body
 
-    const {registerId} = req.body
     try {
-        if (!registerId) {
-             throw new Error('userId ausente')
+        if (!id || !userId) {
+             throw new Error('userId ou registerId auxentes')
         }
-        await RegisterService.Delete(registerId)
-        return res.status(200).json({message: 'Usuario deletado com sucesso'})
+        await RegisterService.Delete(Number(id))
+        return res.status(200).json({message: 'Registro deletado com sucesso'})
     }
     catch (err : any){
         return res.status(400).json({message: 'Erro ao deletar registro.', error: err.message})
