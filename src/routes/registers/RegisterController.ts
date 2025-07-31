@@ -33,5 +33,19 @@ class RegisterController {
     }
 
    }
+   public Delete = async (req:Request , res:Response) => {
+
+    const {registerId} = req.body
+    try {
+        if (!registerId) {
+             throw new Error('userId ausente')
+        }
+        await RegisterService.Delete(registerId)
+        return res.status(200).json({message: 'Usuario deletado com sucesso'})
+    }
+    catch (err : any){
+        return res.status(400).json({message: 'Erro ao deletar registro.', error: err.message})
+    }
+   }
 }
 export default new RegisterController();

@@ -9,6 +9,7 @@ class RegisterRouter {
         this.router.use(Auth.Safe);
         this.router.post('/new', (req:Request, res:Response) => {RegisterController.Create(req, res)})
         this.router.get('/all', (req:Request, res:Response) => {RegisterController.GetAll(req, res)})
+        this.router.delete('/delete', (req:Request, res:Response) =>{RegisterController.Delete(req, res)})
     }
 
     public Router = () => {
