@@ -51,5 +51,20 @@ class UserController {
             return res.status(401).json({message: 'Erro ao encontrar usuario', error: err.message})
         }
     }
+    public Check = async (req:Request, res:Response) : Promise<Response> => {
+        const {userId, password} = req.body
+
+        try {
+            if (!userId) {
+               throw new Error('Id de usuario ausente')
+            }
+            const usuario = await UserService.Check({userId, password})
+            return res.status(200).json(usuario)
+        }
+        catch(err : any) {
+            return res.status(404).json({message: 'Não foi possivel checar o password', error: err.message})
+        }
+
+    }
 }
 export default new UserController();

@@ -1,6 +1,6 @@
 import Password from "../../utils/Password";
 import Token from "../../utils/Token";
-import { IUserLogin, IUserRegister } from "./UserInterface";
+import { IUserLogin, IUserRegister, IUserCheck } from "./UserInterface";
 import UserRepository from "./UserRepository";
 
 
@@ -73,6 +73,21 @@ class UserService {
         }
 
         return await UserRepository.Delete(String(user.id))
+    }
+    
+    public Check = async (data: IUserCheck) => {
+
+        const user = await UserRepository.Find(data.userId)
+
+        if (!user) {
+            throw new Error('Usuario não encontrado')
+        }
+        
+        if (!await Password.Compare(data.password, user.password)) {
+            throw new Error('Senha incorreta')
+        }
+
+        return true
     }
 }
 export default new UserService();
