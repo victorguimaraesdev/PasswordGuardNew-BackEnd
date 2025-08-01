@@ -35,8 +35,21 @@ class UserController {
         catch (err: any) {
             return res.status(400).json({message: 'Erro ao realizar o Login', error: err.message})
         }
+    }
+    public Find = async (req:Request, res:Response) : Promise<Response> => {
+        const {userId} = req.body
+        
+        if (!userId){
+            throw new Error('Id de usuario ausente')
+        }
 
-
+        try {
+            const usuario = await UserService.Find(userId)
+            return res.status(200).json({usuario})
+        }
+        catch (err : any) {
+            return res.status(401).json({message: 'Erro ao encontrar usuario', error: err.message})
+        }
     }
 }
 export default new UserController();
