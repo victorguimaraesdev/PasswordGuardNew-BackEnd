@@ -10,7 +10,7 @@ class UserService {
 
     public Create = async (data: IUserRegister) => {
 
-        if (!/^[a-zA-Z][a-zA-Z0-9._]{2,19}$/.test(data.name)) {
+        if (!/^[a-zA-Z][a-zA-Z0-9._ ]{2,19}$/.test(data.name)) {
             throw new Error('Nome inválido. O nome deve conter apenas letras, números, pontos e sublinhados, e deve ter entre 3 e 20 caracteres.')
         }
         if (!/^[a-zA-Z0-9._]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,50}$/.test(data.email)) {
