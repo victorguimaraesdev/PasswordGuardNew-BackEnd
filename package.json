@@ -8,7 +8,7 @@
     "generate": "prisma generate",
     "push": "prisma db push",
     "reset": "prisma migrate reset --force",
-    "build": "node esbuild.config.js",
+    "build": "node tsconfig.json",
     "start": "npm run push && npm run build && node dist/index.js"
   },
   "keywords": [],
