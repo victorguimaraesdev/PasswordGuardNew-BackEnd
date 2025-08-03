@@ -52,13 +52,16 @@ class UserController {
         }
     }
     public Check = async (req:Request, res:Response) : Promise<Response> => {
-        const {userId, password} = req.body
+        const {userId, password, registerId } = req.body
 
         try {
             if (!userId) {
                throw new Error('Id de usuario ausente')
             }
-            const usuario = await UserService.Check({userId, password})
+            if (!password || !registerId){
+                throw new Error('password ou registro ausentes')
+            }
+            const usuario = await UserService.Check({userId, password, registerId})
             return res.status(200).json(usuario)
         }
         catch(err : any) {

@@ -20,4 +20,5 @@ export interface IUserLogin {
 export interface IUserCheck {
     userId: string
     password: string
+    registerId: number
 }

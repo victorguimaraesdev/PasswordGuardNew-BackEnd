@@ -14,7 +14,11 @@ class RegisterService {
     }
 
     public GetAll = async (id : string) => {
-        return await RegisterRepository.GetAll(id);
+
+       const registers = await RegisterRepository.GetAll(id);
+       const filterdRegisters = registers.map(({ password, ...rest }) => rest);
+
+       return filterdRegisters
     }
 
     public Delete = async (registerId:number) => {

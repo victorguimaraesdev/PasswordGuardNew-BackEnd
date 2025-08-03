@@ -1,5 +1,6 @@
 import Password from "../../utils/Password";
 import Token from "../../utils/Token";
+import RegisterRepository from "../registers/RegisterRepository";
 import { IUserLogin, IUserRegister, IUserCheck } from "./UserInterface";
 import UserRepository from "./UserRepository";
 
@@ -87,7 +88,7 @@ class UserService {
             throw new Error('Senha incorreta')
         }
 
-        return true
+        return await RegisterRepository.PickPassword(data.registerId)
     }
 }
 export default new UserService();

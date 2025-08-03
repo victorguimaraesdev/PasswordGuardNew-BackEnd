@@ -51,6 +51,22 @@ class RegisterRepository {
             throw new Error('Erro ao buscar os registros no banco de dados')
         }
     }
+    public PickPassword = async (id: number) => {
+        try {
+            return Database.register.findFirst({
+                where: {
+                    id: id,
+                    deletedAt: null
+                },
+                select: {
+                    password: true
+                }
+            });
+        }
+        catch (err) {
+            throw new Error('Erro ao puscar senha no banco de dados')
+        }
+    }
 }
 
 export default new RegisterRepository();
