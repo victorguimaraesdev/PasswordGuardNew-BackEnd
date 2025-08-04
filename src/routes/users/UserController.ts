@@ -61,8 +61,8 @@ class UserController {
             if (!password || !registerId){
                 throw new Error('password ou registro ausentes')
             }
-            const usuario = await UserService.Check({userId, password, registerId})
-            return res.status(200).json(usuario)
+           const decyptPassword = await UserService.Check({userId, password, registerId});
+           return res.status(200).json({ decyptPassword }); 
         }
         catch(err : any) {
             return res.status(404).json({message: 'Não foi possivel checar o password', error: err.message})
