@@ -1,3 +1,4 @@
+import Crypto from "../../utils/Crypto";
 import Password from "../../utils/Password";
 import Token from "../../utils/Token";
 import RegisterRepository from "../registers/RegisterRepository";
@@ -88,7 +89,13 @@ class UserService {
             throw new Error('Senha incorreta')
         }
 
-        return await RegisterRepository.PickPassword(data.registerId)
+        const encryptPassword = await RegisterRepository.PickPassword(data.registerId);
+
+        if (!encryptPassword || !encryptPassword.password) {
+            throw new Error('Erro ao encontrar password')
+        }
+        const decyptPassword = Crypto.Decrypt(encryptPassword.password)
+        return decyptPassword;
     }
 }
 export default new UserService();

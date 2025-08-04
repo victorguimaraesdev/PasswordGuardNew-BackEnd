@@ -1,13 +1,16 @@
+import  Crypto  from "../../utils/Crypto";
 import { IRegisterReg} from "./RegisterInterface";
 import RegisterRepository from "./RegisterRepository";
 
 class RegisterService {
     public Create = async (data: IRegisterReg) => {
         
+        const passwordCrypt = Crypto.Encrypt(data.password);
+
         return await RegisterRepository.Create({
             dominio: data.dominio,
             email: data.email,
-            password: data.password,
+            password: passwordCrypt,
             url: data.url,
             userId: data.userId
         })
