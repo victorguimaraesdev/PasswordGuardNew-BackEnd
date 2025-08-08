@@ -15,7 +15,7 @@ class App {
 
     private CorsOptions = () => {
         this.express.use(cors({
-            origin: 'https://password-guard-new.vercel.app/',
+            origin: '*',
             methods: 'GET, PUT, POST, DELETE',
             allowedHeaders: 'Content-Type, Authorization',
             exposedHeaders: 'Content-Type, Authorization'
