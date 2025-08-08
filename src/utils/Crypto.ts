@@ -1,7 +1,7 @@
 import CryptoJS from 'crypto-js';
 
 export class Crypto {
-  private secretKey = "MasterKey"
+  private secretKey = process.env.KEY || "MasterKey"
 
   public Encrypt = (text:string) : string => {
     try{
